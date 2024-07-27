@@ -66,15 +66,39 @@ void	remove_dups(t_lst **lst)
 	}
 }
 
-int	find_max(t_lst **lst, int max)
+int	find_max(t_lst **lst, int n, int oldmax)
 {
-	
+	t_lst	*tmp;
+	int		tmpmax;
+	int		max;
+
+	max = oldmax;
+	tmpmax = 0;
+	tmp = *lst;
+	while (tmp)
+	{
+		if (tmp->used == 0)
+		{
+			tmp->used = 1;
+			if (tmp->n1 == n)
+				tmpmax = find_max(lst, tmp->n2, oldmax + 1);
+			if (tmp->n2 == n)
+				tmpmax = find_max(lst, tmp->n1, oldmax + 1);
+			if (tmpmax > max)
+				max = tmpmax;
+			tmp->used = 0;
+		}
+		tmp = tmp->next;
+	}
+	return (max);
 }
 
 int	main(int argc, char **argv)
 {
 	t_lst	**lst;
+	t_lst	*tmp;
 	int		max;
+	int		tmpmax;
 
 	if (argc == 2)
 	{
@@ -83,7 +107,17 @@ int	main(int argc, char **argv)
 			return (1);
 		remove_dups(lst);
 		max = 0;
-		max = find_max(lst, max);
+		tmp = *lst;
+		while (tmp)
+		{
+			tmpmax = find_max(lst, tmp->n1, 0);
+			if (tmpmax > max)
+				max = tmpmax;
+			tmpmax = find_max(lst, tmp->n2, 0);
+			if (tmpmax > max)
+				max = tmpmax;
+			tmp = tmp->next;
+		}
 		lstfree(lst);
 		ft_putnbr(max);
 	}

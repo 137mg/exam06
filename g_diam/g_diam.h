@@ -9,6 +9,7 @@ typedef struct s_lst
 {
 	int				n1;
 	int				n2;
+	int				used;
 	struct s_lst	*next;
 }	t_lst;
 
@@ -23,6 +24,6 @@ void	ft_putnbr(int n);
 t_lst	**parse_arg(char *arg);
 int		isdup(t_lst **lst, t_lst *node);
 void	remove_dups(t_lst **lst);
-int		find_max(t_lst **lst, int max);
+int		find_max(t_lst **lst, int n, int oldmax);
 
 #endif

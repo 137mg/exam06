@@ -9,6 +9,7 @@ t_lst	*lstnew(int n1, int n2)
 		return (NULL);
 	node->n1 = n1;
 	node->n2 = n2;
+	node->used = 0;
 	node->next = NULL;
 	return (node);
 }
