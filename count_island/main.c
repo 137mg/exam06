@@ -2,15 +2,33 @@
 
 char	*read_file(int fd, char *content)
 {
-	int	ret;
+	char	*buffer;
+	char	*tmp;
+	int		ret;
 
-	content = malloc(sizeof(char) * 1000);
-	if (!content)
+	buffer = ft_calloc(1025);
+	if (!buffer)
 		return (NULL);
-	ret = read(fd, content, 999);
-	if (ret == 0 || ret == -1)
+	ret = read(fd, buffer, 1024);
+	while (ret > 0)
 	{
-		free(content);
+		tmp = ft_strjoin(content, buffer);
+		if (content)
+			free(content);
+		if (!tmp)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		content = tmp;
+		ft_bzero(buffer, 1025);
+		ret = read(fd, buffer, 1024);
+	}
+	free(buffer);
+	if (ret == -1)
+	{
+		if (content)
+			free(content);
 		return (NULL);
 	}
 	return (content);
@@ -18,20 +36,29 @@ char	*read_file(int fd, char *content)
 
 int	check_file(char *content)
 {
-	int	nl1;
-	int	nl2;
 	int	len;
+	int	nl;
 	int	i;
 
-	nl1 = find_nl(content);
-	if (nl2 == -1)
-		return (-1);
-	len = nl1;
+	len = 0;
+	nl = 0;
 	i = 0;
 	while (content[i])
 	{
+		if (!(content[i] == '.'|| content[i] == 'X' || content[i] == '\n'))
+			return (-1);
+		if (content[i] == '\n')
+		{
+			if (len == 0)
+				len = i + 1;
+			else if (i - nl != len)
+				return (-1);
+			nl = i;
+		}
 		i++;
 	}
+	if (content[i - 1] != '\n')
+		return (-1);
 	return (0);
 }
 
@@ -47,7 +74,6 @@ int	main(int argc, char **argv)
 	int		fd;
 	if (argc != 2)
 		return (exit_error());
-	return (0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (exit_error());
