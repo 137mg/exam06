@@ -5,25 +5,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct s_lst
+typedef struct s_node
 {
-	int				n1;
-	int				n2;
+	int				n;
 	int				used;
-	struct s_lst	*next;
-}	t_lst;
+	struct s_node	*next;
+}	t_node;
 
-t_lst	*lstnew(int n1, int n2);
-void	lstadd(t_lst **lst, t_lst *node);
-void	lstfree(t_lst **lst);
+t_node	*nodenew(int n);
+void	nodeadd(t_node **nodelist, t_node *node);
+void	nodefree(t_node **nodelist);
 
+int		ft_count_dash(char *str);
 int		ft_skip(char *str, int i, char c);
 int		ft_atoi(char *str);
 void	ft_putnbr(int n);
 
-t_lst	**parse_arg(char *arg);
-int		isdup(t_lst **lst, t_lst *node);
-void	remove_dups(t_lst **lst);
-int		find_max(t_lst **lst, int n, int oldmax);
+int		*parse_links(char *str, int *links);
+t_node	**parse_nodes(int *links, t_node **nodelist);
+int		is_new_number(t_node **nodelist, int n);
 
 #endif

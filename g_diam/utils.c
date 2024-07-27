@@ -1,5 +1,21 @@
 #include "g_diam.h"
 
+int	ft_count_dash(char *str)
+{
+	int	n;
+	int	i;
+
+	n = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '-')
+			n++;
+		i++;
+	}
+	return (n);
+}
+
 int	ft_skip(char *str, int i, char c)
 {
 	while (str[i])
