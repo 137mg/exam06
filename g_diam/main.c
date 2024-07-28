@@ -5,15 +5,13 @@ int	is_link(int *links, int n1, int n2)
 	int	i;
 
 	i = 0;
-	while (1)
+	while (links[i] != -1)
 	{
 		if (n1 == links[i] || n2 == links[i])
 		{
 			if (n1 == links[i + 1] || n2 == links[i + 1])
 				return (1);
 		}
-		if (links[i + 1] == -1)
-			break;
 		i += 2;
 	}
 	return (0);
@@ -33,9 +31,9 @@ int	find_max(t_node **nodelist, int *links, int n, int oldmax)
 		{
 			tmp->used = 1;
 			newmax = find_max(nodelist, links, tmp->n, oldmax + 1);
+			tmp->used = 0;
 			if (newmax > max)
 				max = newmax;
-			tmp->used = 0;
 		}
 		tmp = tmp->next;
 	}
@@ -54,9 +52,9 @@ int	g_diam(t_node **nodelist, int *links)
 	{
 		tmp->used = 1;
 		newmax = find_max(nodelist, links, tmp->n, 1);
+		tmp->used = 0;
 		if (newmax > max)
 			max = newmax;
-		tmp->used = 0;
 		tmp = tmp->next;
 	}
 	return (max);
