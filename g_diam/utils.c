@@ -56,8 +56,10 @@ void	ft_putnbr(int n)
 	{
 		ft_putnbr(n / 10);
 		ft_putnbr(n % 10);
-		return;
 	}
-	c = n + '0';
-	write(1, &c, 1);
+	else
+	{
+		c = n + '0';
+		write(1, &c, 1);
+	}
 }

@@ -1,9 +1,11 @@
-#ifndef COUNT_ISLAND_H
-# define COUNT_ISLAND_H
+#ifndef ISLAND_H
+# define ISLAND_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# define LINE_LEN 1024
+
 
 int		ft_strlen(char *str);
 int		ft_find_nl(char *str);
@@ -15,8 +17,6 @@ char	*read_file(int fd, char *content);
 int		check_file(char *content);
 int		exit_error(void);
 
-void	count_island(char *str);
-char	check_env(char *str, int i, int len);
-void	reset_str(char *str);
+void	island(char *str);
 
 #endif

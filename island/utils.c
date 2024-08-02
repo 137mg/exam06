@@ -1,4 +1,4 @@
-#include "count_island.h"
+#include "island.h"
 
 int	ft_strlen(char *str)
 {

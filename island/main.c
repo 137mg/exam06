@@ -1,4 +1,4 @@
-#include "count_island.h"
+#include "island.h"
 
 char	*read_file(int fd, char *content)
 {
@@ -6,10 +6,10 @@ char	*read_file(int fd, char *content)
 	char	*tmp;
 	int		ret;
 
-	buffer = ft_calloc(1025);
+	buffer = ft_calloc(LINE_LEN + 1);
 	if (!buffer)
 		return (NULL);
-	ret = read(fd, buffer, 1024);
+	ret = read(fd, buffer, LINE_LEN);
 	while (ret > 0)
 	{
 		tmp = ft_strjoin(content, buffer);
@@ -21,8 +21,8 @@ char	*read_file(int fd, char *content)
 			return (NULL);
 		}
 		content = tmp;
-		ft_bzero(buffer, 1025);
-		ret = read(fd, buffer, 1024);
+		ft_bzero(buffer, LINE_LEN + 1);
+		ret = read(fd, buffer, LINE_LEN);
 	}
 	free(buffer);
 	if (ret == -1)
@@ -87,8 +87,7 @@ int	main(int argc, char **argv)
 		free(content);
 		return (exit_error());
 	}
-	count_island(content);
-	write(1, content, ft_strlen(content));
+	island(content);
 	free(content);
 	return (0);
 }

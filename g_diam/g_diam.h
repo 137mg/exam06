@@ -1,8 +1,8 @@
 #ifndef G_DIAM_H
 # define G_DIAM_H
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct s_node
 {
