@@ -1,7 +1,8 @@
 #include "g_diam.h"
 
-int	*parse_links(char *str, int *links)
+int	*parse_links(char *str)
 {
+	int		*links;
 	int		n;
 	int		i;
 	int		j;
@@ -25,8 +26,9 @@ int	*parse_links(char *str, int *links)
 	return (links);
 }
 
-t_node	**parse_nodes(int *links, t_node **nodelist)
+t_node	**parse_nodes(int *links)
 {
+	t_node	**nodelist;
 	t_node	*node;
 	int		i;
 

@@ -13,7 +13,7 @@ void	ft_bzero(char *str, int len);
 char	*ft_calloc(int len);
 char	*ft_strjoin(char *str1, char *str2);
 
-char	*read_file(int fd, char *content);
+char	*read_file(int fd);
 int		check_file(char *content);
 int		exit_error(void);
 

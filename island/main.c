@@ -1,11 +1,13 @@
 #include "island.h"
 
-char	*read_file(int fd, char *content)
+char	*read_file(int fd)
 {
+	char	*content;
 	char	*buffer;
 	char	*tmp;
 	int		ret;
 
+	content = NULL;
 	buffer = ft_calloc(LINE_LEN + 1);
 	if (!buffer)
 		return (NULL);
@@ -72,13 +74,13 @@ int	main(int argc, char **argv)
 {
 	char	*content;
 	int		fd;
+
 	if (argc != 2)
 		return (exit_error());
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		return (exit_error());
-	content = NULL;
-	content = read_file(fd, content);
+	content = read_file(fd);
 	close(fd);
 	if (!content)
 		return (exit_error());

@@ -68,12 +68,10 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		links = NULL;
-		links = parse_links(argv[1], links);
+		links = parse_links(argv[1]);
 		if (!links)
 			return (1);
-		nodelist = NULL;
-		nodelist = parse_nodes(links, nodelist);
+		nodelist = parse_nodes(links);
 		if (!nodelist)
 		{
 			free(links);

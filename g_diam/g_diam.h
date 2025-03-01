@@ -20,8 +20,8 @@ int		ft_skip(char *str, int i, char c);
 int		ft_atoi(char *str);
 void	ft_putnbr(int n);
 
-int		*parse_links(char *str, int *links);
-t_node	**parse_nodes(int *links, t_node **nodelist);
+int		*parse_links(char *str);
+t_node	**parse_nodes(int *links);
 int		is_new_number(t_node **nodelist, int n);
 
 int		is_link(int *links, int n1, int n2);
